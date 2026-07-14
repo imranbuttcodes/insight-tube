@@ -18,32 +18,43 @@ st.caption("AI-Powered YouTube Comment Intelligence")
 
 
 
+
 def extract_video_id(url: str) -> str:
     """
-    Validate a YouTube URL and extract the video ID.
-
     Supported formats:
     - https://www.youtube.com/watch?v=VIDEO_ID
     - https://youtube.com/watch?v=VIDEO_ID
     - https://youtu.be/VIDEO_ID
+    - https://www.youtube.com/shorts/VIDEO_ID
     """
 
     parsed = urlparse(url)
 
-
     if parsed.netloc in ("www.youtube.com", "youtube.com"):
 
-        if parsed.path != "/watch":
-            raise ValueError("Invalid YouTube watch URL.")
+        # Normal YouTube video
+        if parsed.path == "/watch":
 
-        video_id = parse_qs(parsed.query).get("v")
+            video_id = parse_qs(parsed.query).get("v")
 
-        if not video_id:
-            raise ValueError("Video ID not found.")
+            if not video_id:
+                raise ValueError("Video ID not found.")
 
-        return video_id[0]
+            return video_id[0]
 
-    # youtu.be/VIDEO_ID
+        # YouTube Shorts
+        elif parsed.path.startswith("/shorts/"):
+
+            video_id = parsed.path.split("/")[2]
+
+            if not video_id:
+                raise ValueError("Video ID not found.")
+
+            return video_id
+
+        else:
+            raise ValueError("Invalid YouTube URL.")
+
     elif parsed.netloc == "youtu.be":
 
         video_id = parsed.path.strip("/")

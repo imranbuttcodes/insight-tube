@@ -78,8 +78,6 @@ API_KEY = os.getenv("YOUTUBE_API_KEY")
 
 video_url = st.text_input('Enter Video Url')
 
-if not video_url:
-    st.error('Please Enter a URL')
 
 if video_url:
     try:
@@ -160,6 +158,9 @@ parser = StrOutputParser()
 chain = analysis_prompt | model | parser
 
 if st.button('Analyze'):
+    if not video_url:
+        st.error('Please Enter a URL')
+
     with st.spinner('analyzing'):
 
         URL = "https://www.googleapis.com/youtube/v3/commentThreads"

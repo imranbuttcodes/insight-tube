@@ -162,7 +162,7 @@ if st.button('Analyze'):
     with st.spinner('analyzing'):
         if not video_url:
             st.error('Please Enter a URL')
-
+            st.stop()
 
         URL = "https://www.googleapis.com/youtube/v3/commentThreads"
 

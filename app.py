@@ -158,10 +158,11 @@ parser = StrOutputParser()
 chain = analysis_prompt | model | parser
 
 if st.button('Analyze'):
-    if not video_url:
-        st.error('Please Enter a URL')
-
+    
     with st.spinner('analyzing'):
+        if not video_url:
+            st.error('Please Enter a URL')
+
 
         URL = "https://www.googleapis.com/youtube/v3/commentThreads"
 

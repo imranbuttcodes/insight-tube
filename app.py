@@ -78,6 +78,9 @@ API_KEY = os.getenv("YOUTUBE_API_KEY")
 
 video_url = st.text_input('Enter Video Url')
 
+if not video_url:
+    st.error('Please Enter a URL')
+
 if video_url:
     try:
         VIDEO_ID = extract_video_id(video_url)

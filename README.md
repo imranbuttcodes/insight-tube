@@ -4,6 +4,8 @@ AI-powered YouTube comment analyzer. Paste a video link, get back a full report 
 
 Built this because scrolling through hundreds of comments manually to figure out "what do people actually think" is a waste of time. This does it in one click.
 
+**Live Demo:** [Click here](https://insight-tube-b7xssmcswmkiylcxuyedaq.streamlit.app/)
+
 ## What it does
 
 1. You paste a YouTube video URL

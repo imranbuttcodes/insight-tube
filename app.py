@@ -149,7 +149,7 @@ analysis_prompt = PromptTemplate(
             input_variables=["comments"]
         )
 
-model = ChatGroq(model = 'llama-3.3-70b-versatile',
+model = ChatGroq(model = 'openai/gpt-oss-120b',
                         groq_api_key = os.getenv('GROQ_API_KEY'))
 
 
